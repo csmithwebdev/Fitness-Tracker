@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Calendar from 'react-calendar';
+import './styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+const App = () => {
+const [value, onChange] = useState(new Date());
+
+return (
+	<div className="ui container">
+		<div className="ui grid">
+			<div id="panel" className="four wide column">
+				<h3>Hello, Casey</h3>
+				<p>Current Weight: 185</p>
+				<p>Goal Weight: 160</p>
+				<p>Successful days: 1</p>
+				<p>Failed days: 0</p>
+				<p>Days until you hit your goal: 119</p>
+			</div>
+			<div className="twelve wide column">
+				<Calendar
+					onChange={onChange}
+					value={value}
+				/>
+			</div>
+		</div>
+	</div>
+	);
 }
 
 export default App;

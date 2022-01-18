@@ -1,0 +1,41 @@
+.react-calendar__month-view__days__day {
+	min-height: 120px;
+	background: white;
+	border: solid 1px #bbbbbb;
+	border-left: none;
+}
+.react-calendar__month-view__days__day:hover {
+	cursor: pointer;
+	background: #f3f3f3;
+}
+
+.react-calendar__month-view__days__day:first-child {
+	min-height: 120px;
+	background: white;
+	border-left: solid 1px #bbbbbb;
+}
+
+.react-calendar__navigation {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth {
+	background: #efefef;
+	border: solid 1px #bbbbbb;
+	border-left: none;
+	border-top: solid 1px #bbbbbb;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth:first-child {
+	background: #efefef;
+	border-left: solid 1px #bbbbbb;
+}
+
+#panel {
+	margin-top: 97px;
+	height: 720px;
+	background: #efefef;
+	border: solid #bbbbbb 1px;
+	padding: 30px;
+}
