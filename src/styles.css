@@ -39,3 +39,8 @@
 	border: solid #bbbbbb 1px;
 	padding: 30px;
 }
+
+a.update_button{
+	font-size: 10px;
+	text-decoration: underline;
+}
