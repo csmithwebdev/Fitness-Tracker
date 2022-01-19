@@ -1,39 +1,75 @@
 import React, {useState} from 'react';
 import Calendar from 'react-calendar';
+import WorkoutLog from './components/WorkoutLog';
+import UserDetails from './components/UserDetails';
 import './styles.css';
-
-
 
 const App = () => {
 const [value, onChange] = useState(new Date());
 
-const userDetails = {
-	name: 'Casey',
-	weight: null,
-	goalWeight: null,
-	successDays: null,
-	failedDays: null,
-	daysLeft: null
-};
+const checkComplete = (isComplete) => {
+	return isComplete;	
+}
+
+const tileClassName = ({date}) => {
+		if (date.getDate() === value.getDate()) {
+			return 'complete';
+			}
+		}
+
+
+
+
+
+
+
+function tileContent({date}) {
+	if (date.getDay() === 1) {
+		return <div className="desc">Chest/Back</div>;
+	}
+	if (date.getDay() === 2) {
+		return <div className="desc">Biceps/Triceps</div>;
+	}
+	if (date.getDay() === 3) {
+		return <div className="desc">Shoulders/Legs</div>;
+	}
+	if (date.getDay() === 4) {
+		return <div className="desc">Chest/Back</div>;
+	}
+	if (date.getDay() === 5) {
+		return <div className="desc">Biceps/Triceps</div>;
+	}
+	if (date.getDay() === 6) {
+		return <div className="desc">Shoulders/Legs</div>;
+	}
+	if (date.getDay() === 0) {
+		return <div className="desc">Cardio</div>;
+	}
+}
+  
+
+// we need to be able to check and see if competedWorkout function has been called.
 
 
 return (
 	<div className="ui container">
 		<div className="ui grid">
-			<div id="panel" className="four wide column">
-				<h3>Hello, {userDetails.name}</h3>
-				<p>Current Weight: 185 <a className="update_button" href="#">update</a></p>
-				<p>Goal Weight: 160</p>
-				<p>Successful days: 1</p>
-				<p>Failed days: 0</p>
-				<p>Days until you hit your goal: 119</p>
-			</div>
-			<div className="twelve wide column">
+			<UserDetails />
+
+			<div className="eight wide column">
 				<Calendar
-					onChange={(value, onChange) => alert('Clicked day: ', value)}
+					onChange={onChange}
 					value={value}
+					tileClassName = {tileClassName}
+					tileContent = {tileContent}
 				/>
 			</div>
+
+			<WorkoutLog
+				date={value}
+				isComplete = {checkComplete}
+			 />
+			
 		</div>
 	</div>
 	);
