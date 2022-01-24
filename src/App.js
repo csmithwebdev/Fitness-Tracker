@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Calendar from 'react-calendar';
 import WorkoutLog from './components/WorkoutLog';
 import UserDetails from './components/UserDetails';
@@ -7,18 +7,13 @@ import './styles.css';
 const App = () => {
 const [value, onChange] = useState(new Date());
 
-const checkComplete = (isComplete) => {
-	return isComplete;	
+
+//KK, i've exhausted my options. Time to make this work some other way. Try to add the class name based on whatever element
+//is clicked. Going to have to do this plain ole js way somehow.
+
+function checkComplete(isComplete) {
+	console.log(isComplete);
 }
-
-const tileClassName = ({date}) => {
-		if (date.getDate() === value.getDate()) {
-			return 'complete';
-			}
-		}
-
-
-
 
 
 
@@ -48,8 +43,6 @@ function tileContent({date}) {
 }
   
 
-// we need to be able to check and see if competedWorkout function has been called.
-
 
 return (
 	<div className="ui container">
@@ -60,7 +53,6 @@ return (
 				<Calendar
 					onChange={onChange}
 					value={value}
-					tileClassName = {tileClassName}
 					tileContent = {tileContent}
 				/>
 			</div>
