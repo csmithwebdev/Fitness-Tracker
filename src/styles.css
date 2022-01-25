@@ -1,8 +1,22 @@
+.react-calendar__month-view__days {
+	outline: solid 1px #eee;
+	box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
+}
+
+.react-calendar__month-view__weekdays {
+	padding-bottom: 10px;
+}
+
+abbr[title] {
+	text-align: center;
+	text-decoration: none !important;
+}
+
 .react-calendar__month-view__days__day {
 	min-height: 120px;
 	background: white;
-	border: solid 1px #bbbbbb;
-	border-left: none;
+	outline: solid 1px #eee;
+	border: none;
 }
 .react-calendar__month-view__days__day:hover {
 	cursor: pointer;
@@ -10,13 +24,12 @@
 }
 
 .react-calendar__tile--active {
-	background: #ebebeb;
+	background: #f3f3f3;
 }
 
 .react-calendar__month-view__days__day:first-child {
 	min-height: 120px;
 	background: white;
-	border-left: solid 1px #bbbbbb;
 }
 
 .react-calendar__navigation {
@@ -24,32 +37,11 @@
 	margin-bottom: 20px;
 }
 
-.react-calendar__month-view__days__day--neighboringMonth {
-	background: #fff;
-	border: solid 1px #bbbbbb;
-	border-left: none;
-	border-top: solid 1px #bbbbbb;
-	color: #fff;
-	pointer-events: none;
-}
-.react-calendar__month-view__days__day--neighboringMonth:hover {
-	background: #fff;
-	border: solid 1px #bbbbbb;
-	border-left: none;
-	border-top: solid 1px #bbbbbb;
-	color: #fff;
-}
-
-.react-calendar__month-view__days__day--neighboringMonth:first-child {
-	background: #fff;
-	border-left: solid 1px #bbbbbb;
-}
-
 #panel {
-	margin-top: 97px;
+	margin-top: 106px;
 	height: 720px;
-	background: #efefef;
-	border: solid #bbbbbb 1px;
+	background: #eee;
+	box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
 	padding: 30px;
 }
 
@@ -60,7 +52,6 @@ a.update_button{
 
 .react-calendar__tile--now {
 	background: #fff;
-	border: solid 2px #000;
 	color: #000;
 }
 
@@ -81,5 +72,12 @@ a.update_button{
 }
 
 .complete {
-	background: green;
+	background: #21ba45;
+	color: #fff;
 }
+
+.complete:hover {
+	background: #21ba45;
+	color: #fff;
+}
+

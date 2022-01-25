@@ -6,17 +6,24 @@ import './styles.css';
 
 const App = () => {
 const [value, onChange] = useState(new Date());
-
-
-//KK, i've exhausted my options. Time to make this work some other way. Try to add the class name based on whatever element
-//is clicked. Going to have to do this plain ole js way somehow.
+const completedDates = [];
+const [completed, getCompleted] = useState(completedDates);
 
 function checkComplete(isComplete) {
-	console.log(isComplete);
+	if (isComplete === true) {
+		getCompleted(completedDates => [...completedDates, value.getDate()]); // Push dates to 
+	}
 }
 
+const tileClassName = ({date}) => {
+	for(var i = 0; i<completed.length; i++) {
+		if (date.getDate() === completed[i]) {
+			return 'complete'
+		}
+	}
+}
 
-
+//TODO: 1. Make sure it's only dates in current month view. Work on logic for the confirm window.
 
 function tileContent({date}) {
 	if (date.getDay() === 1) {
@@ -54,6 +61,8 @@ return (
 					onChange={onChange}
 					value={value}
 					tileContent = {tileContent}
+					tileClassName = {tileClassName}
+					showNeighboringMonth = {false}
 				/>
 			</div>
 

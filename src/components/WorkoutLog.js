@@ -22,7 +22,7 @@ const getDay = days[props.date.getDay()];
 
 const completedWorkout = (data) => {
 	window.confirm('Are you sure you want to mark ' + props.date.toLocaleDateString("en-US", options.day) + ' as complete?');
-	props.isComplete(true); //Pass this click event back to App.js
+	return props.isComplete(true); //Pass this click event back to App.js
 }
 
 function getWorkout() {
