@@ -21,8 +21,12 @@ const getDay = days[props.date.getDay()];
 
 
 const completedWorkout = (data) => {
-	window.confirm('Are you sure you want to mark ' + props.date.toLocaleDateString("en-US", options.day) + ' as complete?');
-	return props.isComplete(true); //Pass this click event back to App.js
+	const confirmation = 'Are you sure you want to mark ' + props.date.toLocaleDateString("en-US", options.day) + ' as complete?';
+	if (window.confirm(confirmation) == true) {
+		return props.isComplete(true); //Pass this click event back to App.js
+	} else {
+		return props.isComplete(false);
+	}	
 }
 
 function getWorkout() {
