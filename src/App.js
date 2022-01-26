@@ -5,6 +5,12 @@ import UserDetails from './components/UserDetails';
 import './styles.css';
 
 /*
+NOTES:
+npm install
+npm install react-calendar
+npm install i firebase
+npm i bootstrap react-bootstrap
+
 
 TODO:
 1. If they click on a different month, alert them that they can't mark as complete.
