@@ -4,26 +4,40 @@ import WorkoutLog from './components/WorkoutLog';
 import UserDetails from './components/UserDetails';
 import './styles.css';
 
+/*
+
+TODO:
+1. If they click on a different month, alert them that they can't mark as complete.
+2. Database to keep track of completed dates.
+3. Database for loging in.
+4. Database to store user details
+5. Database to store workout goals
+6. Database to store workouts
+
+*/
+
 const App = () => {
 const [value, onChange] = useState(new Date());
 const completedDates = [];
 const [completed, getCompleted] = useState(completedDates);
+const [currentMonth, setCurrentMonth] = useState(value.getMonth()); //Would be ideal to set current month based on viewChange.
 
 function checkComplete(isComplete) {
 	if (isComplete === true) {
-		getCompleted(completedDates => [...completedDates, value.getDate()]); // Push dates to 
+		getCompleted(completedDates => [...completedDates, value.getDate()]);
 	}
 }
 
-const tileClassName = ({date}) => {
-	for(var i = 0; i<completed.length; i++) {
-		if (date.getDate() === completed[i]) {
+const tileClassName = ({date, view}) => {
+	if (view === 'month' && date.getMonth() === currentMonth) {
+		for(var i = 0; i<completed.length; i++) {
+			if (date.getDate() === completed[i]) {
 			return 'complete'
+			}
 		}
-	}
+   	}
 }
 
-//TODO: 1. Make sure it's only dates in current month view. Work on logic for the confirm window.
 
 function tileContent({date}) {
 	if (date.getDay() === 1) {
