@@ -80,3 +80,9 @@ a.update_button{
 	background: #21ba45;
 	color: #fff;
 }
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+    cursor: pointer;
+    border: none;
+    padding: 10px;
+}

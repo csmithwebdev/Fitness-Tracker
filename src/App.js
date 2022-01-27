@@ -1,15 +1,24 @@
+import './styles.css';
 import React, {useState, useEffect} from 'react';
+import Signup from './components/Signup';
 import Calendar from 'react-calendar';
 import WorkoutLog from './components/WorkoutLog';
 import UserDetails from './components/UserDetails';
-import './styles.css';
+import Dashboard from './components/Dashboard';
+import { Container } from 'react-bootstrap';
+import { AuthProvider } from './contexts/AuthContext';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
+
 
 /*
 NOTES:
 npm install
 npm install react-calendar
 npm install i firebase
-npm i bootstrap react-bootstrap
+npm install react-bootstrap bootstrap@5.1.3
+npm i react-router-dom
 
 
 TODO:
@@ -23,76 +32,19 @@ TODO:
 */
 
 const App = () => {
-const [value, onChange] = useState(new Date());
-const completedDates = [];
-const [completed, getCompleted] = useState(completedDates);
-const [currentMonth, setCurrentMonth] = useState(value.getMonth()); //Would be ideal to set current month based on viewChange.
-
-function checkComplete(isComplete) {
-	if (isComplete === true) {
-		getCompleted(completedDates => [...completedDates, value.getDate()]);
-	}
-}
-
-const tileClassName = ({date, view}) => {
-	if (view === 'month' && date.getMonth() === currentMonth) {
-		for(var i = 0; i<completed.length; i++) {
-			if (date.getDate() === completed[i]) {
-			return 'complete'
-			}
-		}
-   	}
-}
-
-
-function tileContent({date}) {
-	if (date.getDay() === 1) {
-		return <div className="desc">Chest/Back</div>;
-	}
-	if (date.getDay() === 2) {
-		return <div className="desc">Biceps/Triceps</div>;
-	}
-	if (date.getDay() === 3) {
-		return <div className="desc">Shoulders/Legs</div>;
-	}
-	if (date.getDay() === 4) {
-		return <div className="desc">Chest/Back</div>;
-	}
-	if (date.getDay() === 5) {
-		return <div className="desc">Biceps/Triceps</div>;
-	}
-	if (date.getDay() === 6) {
-		return <div className="desc">Shoulders/Legs</div>;
-	}
-	if (date.getDay() === 0) {
-		return <div className="desc">Cardio</div>;
-	}
-}
-  
-
 
 return (
-	<div className="ui container">
-		<div className="ui grid">
-			<UserDetails />
-
-			<div className="eight wide column">
-				<Calendar
-					onChange={onChange}
-					value={value}
-					tileContent = {tileContent}
-					tileClassName = {tileClassName}
-					showNeighboringMonth = {false}
-				/>
-			</div>
-
-			<WorkoutLog
-				date={value}
-				isComplete = {checkComplete}
-			 />
+		
 			
-		</div>
-	</div>
+				<Router>
+					<AuthProvider>
+						 <Routes>
+						 	<Route exact path ="/" element={<Dashboard />}/>
+							<Route path="/signup" element={<Signup />} />
+							<Route path="/login" element={<Login />} />
+						 </Routes>
+					</AuthProvider>
+				</Router>
 	);
 }
 
