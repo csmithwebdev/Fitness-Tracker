@@ -10,6 +10,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
+import ForgotPassword from './components/ForgotPassword';
+import UpdateProfile from './components/UpdateProfile';
 
 
 /*
@@ -39,9 +41,11 @@ return (
 				<Router>
 					<AuthProvider>
 						 <Routes>
-						 	<Route exact path ="/" element={<Dashboard />}/>
+						 	<Route exact path ="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
+						 	<Route path ="/update-profile" element={<PrivateRoute><UpdateProfile/></PrivateRoute>}/>
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/login" element={<Login />} />
+							<Route path="/forgot-password" element={<ForgotPassword />} />
 						 </Routes>
 					</AuthProvider>
 				</Router>
