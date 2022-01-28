@@ -5,13 +5,16 @@ import Calendar from 'react-calendar';
 import WorkoutLog from './components/WorkoutLog';
 import UserDetails from './components/UserDetails';
 import Dashboard from './components/Dashboard';
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword';
 import UpdateProfile from './components/UpdateProfile';
+import Goals from './components/Goals';
+import CalendarArea from './components/CalendarArea';
+import Sidebar from './components/Sidebar';
 
 
 /*
@@ -37,19 +40,27 @@ TODO:
 const App = () => {
 
 return (
-		
+
+	
+	
 			
+
 				<Router>
+				
 					<AuthProvider>
 						 <Routes>
 						 	<Route exact path ="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
-						 	<Route path ="/update-profile" element={<PrivateRoute><UpdateProfile/></PrivateRoute>}/>
+						 	<Route path ="/update-profile" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
 							<Route path="/signup" element={<Signup />} />
 							<Route path="/login" element={<Login />} />
 							<Route path="/forgot-password" element={<ForgotPassword />} />
+							<Route path="/goals" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+							<Route path="/calendar" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
 						 </Routes>
 					</AuthProvider>
 				</Router>
+	
+	
 	);
 }
 

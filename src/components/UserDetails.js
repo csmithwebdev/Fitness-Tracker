@@ -16,7 +16,7 @@ const UserDetails = (props) => {
 
 	return (
 		<div>
-			<div id="panel" className="two wide column">
+			<div className="two wide column userDetails">
 					<h3>Hello, {userDetails.name}</h3>
 					<p>Current Weight: 185 <a className="update_button" href="#">update</a></p>
 					<p>Goal Weight: 160 <a className="update_button" href="#">update</a></p>

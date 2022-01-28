@@ -5,6 +5,7 @@
 
 .react-calendar__month-view__weekdays {
 	padding-bottom: 10px;
+	text-align: center;
 }
 
 abbr[title] {
@@ -37,6 +38,51 @@ abbr[title] {
 	margin-bottom: 20px;
 }
 
+.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button {
+	background: #727cf5 !important;
+	color: #fff !important;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10) !important;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button:hover {
+	background: #6169d0 !important;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
+	background: #727cf5 !important;
+	color: #fff !important;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10) !important;
+}
+
+.react-calendar__navigation__arrow.react-calendar__navigation__prev-button:hover {
+	background: #6169d0 !important;
+}
+
+.react-calendar__navigation__label {
+	background: #727cf5 !important;
+	color: #fff !important;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10) !important;
+}
+.react-calendar__navigation__label:hover {
+	background: #6169d0 !important;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+	background: #727cf5 !important;
+	color: #fff !important;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10) !important;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__next-button:hover {
+	background: #6169d0 !important;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__next2-button {
+	background: #727cf5 !important;
+	color: #fff !important;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.10) !important;
+}
+.react-calendar__navigation__arrow.react-calendar__navigation__next2-button:hover {
+	background: #6169d0 !important;
+}
+
+
 #panel {
 	height: 100%;
 	background: #eee;
@@ -44,10 +90,23 @@ abbr[title] {
 	padding: 30px;
 }
 
+.topnav {
+	position: fixed;
+	min-height: 70px;
+	left: 310px;
+	top: 0;
+	right: 0;
+	background: #fff;
+	z-index: 1000;
+
+}
+
 .sidebar {
 	height: 100vh;
 	background: #313a46;
 	color: #fff;
+	position: fixed;
+	width: 300px;
 }
 
 .sidebar h3 {
@@ -76,9 +135,8 @@ a.update_button{
 }
 
 .ui.positive.basic.button.complete {
-	position: absolute;
-	bottom: 30px;
-	right: 30px;
+	background: #0acf97 !important;
+	color: #fff !important;
 }
 
 .desc {
@@ -87,12 +145,12 @@ a.update_button{
 }
 
 .complete {
-	background: #21ba45;
+	background: #0acf97;
 	color: #fff;
 }
 
 .complete:hover {
-	background: #21ba45;
+	background: #0acf97;
 	color: #fff;
 }
 
@@ -121,7 +179,7 @@ a.update_button{
     font-weight: 700;
 }
 
-.side-nav .side-nav-link a {
+.side-nav .side-nav-link {
     color: #8391a2;
     display: block;
     padding: 10px 30px;
@@ -130,11 +188,20 @@ a.update_button{
     -webkit-transition: all .4s;
     transition: all .4s;
     list-style: none;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
-i.bi.bi-calendar-check {
-	 color: #8391a2;
+.side-nav .side-nav-link:hover {
+    color: #fff;
+}
+
+.link a {
+	text-decoration: none !important;
+}
+
+
+i {
+	color: #8391a2;
     display: block;
     padding: 10px 30px;
     font-size: 1.2rem;
@@ -150,10 +217,8 @@ i.bi.bi-calendar-check {
 	background: #f9fafd;
 	margin-left: 0 !important;
 	padding: 20px;
-}
-
-.topnav {
-	padding: 15px;
+	padding-top: 0 !important;
+	padding-left: 0px;
 }
 
 .profileImage {
@@ -177,4 +242,40 @@ i.bi.bi-calendar-check {
 .dropdown-item a {
 	text-decoration: none !important;
 	color: #000 !important;
+}
+
+.calendarPanel {
+	background: #fff;
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.05);
+}
+
+.col-lg-10 {
+	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.05) !important;
+}
+
+.workoutLog {
+	padding: 30px;
+	margin-left: 20px;
+	
+}
+
+.theCalendar {
+
+}
+
+.breadcrumbs {
+	padding: 20px 0 !important;
+	margin-top: 80px !important;
+}
+
+.userDetails {
+	padding: 40px
+}
+
+img.logo {
+	padding-top: 20px;
+	padding-bottom: 30px;
+	max-width: 120px;
+	display: block;
+	margin: 0 auto;
 }
