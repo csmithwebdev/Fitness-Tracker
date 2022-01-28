@@ -38,11 +38,26 @@ abbr[title] {
 }
 
 #panel {
-	margin-top: 106px;
-	height: 720px;
+	height: 100%;
 	background: #eee;
 	box-shadow: rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px;
 	padding: 30px;
+}
+
+.sidebar {
+	height: 100vh;
+	background: #313a46;
+	color: #fff;
+}
+
+.sidebar h3 {
+	padding-top: 20px;
+	text-align: center;
+}
+
+.sidebar-col {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 
 a.update_button{
@@ -85,4 +100,81 @@ a.update_button{
     cursor: pointer;
     border: none;
     padding: 10px;
+}
+
+.side-nav {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+.side-nav .side-nav-title {
+    color: #8391a2;
+}
+
+.side-nav .side-nav-title {
+    padding: 12px 30px;
+    letter-spacing: .05em;
+    pointer-events: none;
+    cursor: default;
+    font-size: .6875rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.side-nav .side-nav-link a {
+    color: #8391a2;
+    display: block;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    position: relative;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    list-style: none;
+    text-decoration: none;
+}
+
+i.bi.bi-calendar-check {
+	 color: #8391a2;
+    display: block;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    position: relative;
+    -webkit-transition: all .4s;
+    transition: all .4s;
+    list-style: none;
+    text-decoration: none;
+}
+
+.ui.grid {
+	margin-top: 0 !important;
+	background: #f9fafd;
+	margin-left: 0 !important;
+	padding: 20px;
+}
+
+.topnav {
+	padding: 15px;
+}
+
+.profileImage {
+	max-width: 50px;
+	border-radius: 100%;
+}
+
+.profileDrop {
+	padding: 5px;
+}
+
+.btn-check:focus+.btn, .btn:focus {
+    outline: 0;
+    box-shadow: none !important;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.dropdown-item a {
+	text-decoration: none !important;
+	color: #000 !important;
 }

@@ -21,6 +21,7 @@ npm install react-calendar
 npm install i firebase
 npm install react-bootstrap bootstrap@5.1.3
 npm i react-router-dom
+npm i bootstrap-icons
 
 
 TODO:

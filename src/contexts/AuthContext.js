@@ -45,7 +45,7 @@ function signup(email, password) {
   }, [])
 
 	const value = {
-		currentUser,
+		  currentUser,
     	signup,
     	login,
     	logout,
