@@ -9,6 +9,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import CalendarArea from './CalendarArea';
 import Goals from './Goals';
 import UpdateProfile from './UpdateProfile';
+import UpdateGoals from './UpdateGoals';
 
 
 const Dashboard = (props) => {
@@ -46,8 +47,11 @@ const Dashboard = (props) => {
 		}
 	}
 
-
-
+	function getUpdateGoals() {
+		if(location.pathname === '/update-goals') {
+			return <UpdateGoals />;
+		}
+	}
 
 	return (
 			<Container fluid>
@@ -72,17 +76,18 @@ const Dashboard = (props) => {
 									</Col>							
 								</Row>
 							</Dropdown.Toggle>
-							<Dropdown.Menu>
-							    <Dropdown.Item className="profileLink"><Link to ="/update-profile">Change Password/Email</Link></Dropdown.Item>
-							    <Dropdown.Item className="profileLink" onClick={handleLogout}>Logout</Dropdown.Item>
-
-							  </Dropdown.Menu>
+								<Dropdown.Menu>
+									<Dropdown.Item className="profileLink"><Link to ="/update-goals">User Settings</Link></Dropdown.Item>
+								    <Dropdown.Item className="profileLink"><Link to ="/update-profile">Security</Link></Dropdown.Item>
+								    <Dropdown.Item className="profileLink" onClick={handleLogout}>Logout</Dropdown.Item>
+								 </Dropdown.Menu>
 						</Dropdown>
 						</Col>						
 						</Row>
 						{getCalendar()}
 						{getGoals()}
 						{getUpdateProfile()}
+						{getUpdateGoals()}
 
 						
 						

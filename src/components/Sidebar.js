@@ -16,7 +16,7 @@ export default function Sidebar() {
 							</Col>
 							<Col>
 							<Link style={{textDecoration: 'none'}} className="link" to="/calendar">
-								<li className="side-nav-item side-nav-link">Calendar</li>
+								<li className="side-nav-item side-nav-link">Workout Calendar</li>
 							</Link>
 							</Col>
 						</Row>
@@ -26,7 +26,17 @@ export default function Sidebar() {
 							</Col>
 							<Col>
 								<Link style={{textDecoration: 'none'}} to="/goals">
-								<li className="side-nav-item side-nav-link">Fitness Goals</li>
+								<li className="side-nav-item side-nav-link">Goal Tracker</li>
+								</Link>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={1}>
+								<i className="bi bi-calculator"></i>
+							</Col>
+							<Col>
+								<Link style={{textDecoration: 'none'}} to="/tdee-calculator">
+								<li className="side-nav-item side-nav-link">TDEE Calculator</li>
 								</Link>
 							</Col>
 						</Row>

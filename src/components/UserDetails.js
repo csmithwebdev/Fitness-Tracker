@@ -1,28 +1,26 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import '../styles.css';
+import { Link } from 'react-router-dom';
+import { useDatabase } from "../contexts/DatabaseContext";
+import firebase from '../firebase';
+
 
 const UserDetails = (props) => {
 
-	const userDetails = {
-		name: 'Casey',
-		weight: null,
-		goalWeight: null,
-		successDays: null,
-		failedDays: null,
-		daysLeft: null
-	};
-
+	const [userDetailsList, setUserDetailsList] = useState();
+	const { firstName } = useDatabase();
+	const { currentWeight } = useDatabase();
+	const { goalWeight } = useDatabase();
 
 
 	return (
 		<div>
 			<div className="two wide column userDetails">
-					<h3>Hello, {userDetails.name}</h3>
-					<p>Current Weight: 185 <a className="update_button" href="#">update</a></p>
-					<p>Goal Weight: 160 <a className="update_button" href="#">update</a></p>
-					<p>Successful days: 1</p>
-					<p>Failed days: 0</p>
-					<p>Days until you hit your goal: 119</p>
+					<h3>Hello, {firstName}</h3><br />
+					<p>Successful days: </p>
+					<p>Longest Streak: </p>
+					<p>Failed days: </p>
+					<p>Days until you hit your goal: </p>
 			</div>
 		</div>
 		);

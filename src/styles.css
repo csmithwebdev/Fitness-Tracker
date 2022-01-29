@@ -279,3 +279,18 @@ img.logo {
 	display: block;
 	margin: 0 auto;
 }
+
+.dashboardPanel {
+	padding-top: 20px;
+	padding-bottom: 40px;
+	max-width: 500px;
+}
+
+.form-label {
+	margin-top: 10px;
+}
+
+.innerRow {
+	margin-top: 30px !important;
+	margin-bottom: 20px !important;
+}

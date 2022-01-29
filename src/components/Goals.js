@@ -6,6 +6,7 @@ import {Button, Card, Alert, Container, Row, Col, Dropdown} from 'react-bootstra
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from 'react-router-dom';
 import Dashboard from './Dashboard';
+import firebase from '../firebase';
 
 
 const Goals = (props) => {
@@ -26,17 +27,26 @@ const Goals = (props) => {
 
 
 	return (
-	
-			<div className="ui grid">
+			<>
 				<Row className="breadcrumbs"> 
-					<h5>Fitness Goals</h5>
+					<h5>Goal Tracker</h5>
 				</Row>
 				<Container className="calendarPanel" fluid>
 					<Row>
 						<UserDetails />
 					</Row>
 				</Container>
-			</div>
+				<br />
+				<Container className="calendarPanel" fluid>
+					<Row>
+						<h4>Progress Graph</h4>
+					</Row>
+
+					<Row>
+						<h4>You will reach your goal in x Days (See here how this is determined)</h4>
+					</Row>
+				</Container>
+			</>
 		
 	)
 }

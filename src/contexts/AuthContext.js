@@ -35,6 +35,10 @@ function signup(email, password) {
   	return currentUser.updatePassword(password);
   }
 
+  function isNewUser() {
+    return auth.additionalUserInfo.isNewUser();
+  }
+
 	useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       	setCurrentUser(user);
@@ -51,7 +55,8 @@ function signup(email, password) {
     	logout,
     	resetPassword,
     	updateEmail,
-    	updatePassword
+    	updatePassword,
+      isNewUser
 	}
 
 

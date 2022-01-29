@@ -15,6 +15,8 @@ import UpdateProfile from './components/UpdateProfile';
 import Goals from './components/Goals';
 import CalendarArea from './components/CalendarArea';
 import Sidebar from './components/Sidebar';
+import FTUDetails from './components/FTUDetails';
+import { DatabaseProvider } from './contexts/DatabaseContext';
 
 
 /*
@@ -40,14 +42,10 @@ TODO:
 const App = () => {
 
 return (
-
-	
-	
-			
-
+	<>
 				<Router>
-				
 					<AuthProvider>
+					<DatabaseProvider>
 						 <Routes>
 						 	<Route exact path ="/" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
 						 	<Route path ="/update-profile" element={<PrivateRoute><Dashboard/></PrivateRoute>}/>
@@ -56,9 +54,13 @@ return (
 							<Route path="/forgot-password" element={<ForgotPassword />} />
 							<Route path="/goals" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
 							<Route path="/calendar" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+							<Route path="/update-goals" element={<PrivateRoute><Dashboard/></PrivateRoute>} />
+							<Route path="/basic-info" element={<PrivateRoute><FTUDetails/></PrivateRoute>} />
 						 </Routes>
+					</DatabaseProvider>
 					</AuthProvider>
 				</Router>
+	</>
 	
 	
 	);

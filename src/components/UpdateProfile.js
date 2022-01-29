@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
+import { Form, Button, Card, Container, Alert, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from 'react-router-dom';
@@ -43,11 +43,12 @@ export default function UpdateProfile() {
 
 	return(
 		<>
-			<Container className="d-flex align-items-center justify-content-center" style={{minHeight: '100vh'}}>
-				<div className="w-100" style={{maxWidth: '400px'}}>
-					<Card>
-						<Card.Body>
-							<h2 className="text-center mb-4">Update Profile</h2>
+		<Row className="breadcrumbs"> 
+				<h5>Security Settings</h5>
+			</Row>
+			<Container className="calendarPanel" fluid>
+				<Row className="float-left dashboardPanel">
+							<h5><u>Update Email/Password</u></h5>
 							{error && <Alert variant="danger">{error}</Alert>}
 							<Form onSubmit={handleSubmit}>
 								<Form.Group>
@@ -67,12 +68,7 @@ export default function UpdateProfile() {
 								</Form.Group>
 								<Button disabled={loading} style={{marginTop: '10px'}} type="submit" className="w-100">Update</Button>
 							</Form>
-						</Card.Body>
-					</Card>
-					<div className="w-100 text-center mt-2">
-						<Link to="/">Cancel</Link>
-					</div>
-				</div>
+				</Row>
 			</Container>
 		</>
 			
