@@ -5,6 +5,7 @@ import WorkoutLog from './WorkoutLog';
 import Sidebar from './Sidebar';
 import {Button, Card, Alert, Container, Row, Col, Dropdown} from 'react-bootstrap';
 import { useAuth } from "../contexts/AuthContext";
+import {useDatabase} from "../contexts/DatabaseContext";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import CalendarArea from './CalendarArea';
 import Goals from './Goals';
@@ -17,6 +18,7 @@ const Dashboard = (props) => {
 	const { currentUser, logout } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
+	const {firstName, lastName} = useDatabase();
 
 
 	async function handleLogout () {
@@ -72,7 +74,7 @@ const Dashboard = (props) => {
 									<img className="profileImage" src="https://www.csmithwebdev.com/wp-content/uploads/2022/01/headshot2.jpg"/>
 									</Col>
 									<Col className="d-flex align-items-center">
-									<p>Casey Smith</p>
+									<p>{firstName} {lastName}</p>
 									</Col>							
 								</Row>
 							</Dropdown.Toggle>

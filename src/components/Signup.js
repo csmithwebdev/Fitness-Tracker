@@ -37,6 +37,8 @@ export default function Signup() {
 
 	return(
 		<>
+		<Container className="main" fluid>
+		<img className="main-logo" src="https://www.csmithwebdev.com/wp-content/uploads/2022/01/logo.svg"/>
 			<Container className="d-flex align-items-center justify-content-center" style={{minHeight: '100vh'}}>
 				<div className="w-100" style={{maxWidth: '400px'}}>
 					<Card>
@@ -66,6 +68,7 @@ export default function Signup() {
 						Already have an account? <Link to="/login">Login</Link>
 					</div>
 				</div>
+			</Container>
 			</Container>
 		</>
 			

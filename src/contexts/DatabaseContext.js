@@ -9,7 +9,6 @@ export function useDatabase() {
 
 export function DatabaseProvider({children}) {
 
-//State and variables
 	const [userDetailsList, setUserDetailsList] = useState();
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
@@ -18,7 +17,9 @@ export function DatabaseProvider({children}) {
 	const [height, setHeight] = useState();
 	const [currentWeight, setCurrentWeight] = useState();
 	const [goalWeight, setGoalWeight] = useState();
+	const [id, setId] = useState();
 
+//Get data from database
 useEffect(() => {
 		const detailsRef = firebase.database().ref('UserDetails');
 		detailsRef.on("value", (snapshot)=> {
@@ -26,13 +27,13 @@ useEffect(() => {
 			const userDetailsList = [];
 
 			for (let id in userDetails) {
-				userDetailsList.push(userDetails[id]);
+				userDetailsList.push({id, ...userDetails[id]});
 			}
 			setUserDetailsList(userDetailsList);
 		});
 	}, []);
 
-
+//Create new array of data and set each datapoint as it's own state variable
 	useEffect(() => {
 		if (userDetailsList) {
 		const ud = userDetailsList.map((details) => {
@@ -43,6 +44,7 @@ useEffect(() => {
 		setHeight(details.height);
 		setCurrentWeight(details.currentWeight);
 		setGoalWeight(details.goalWeight);
+		setId(details.id);
 		});
 		return ud;
 		}
@@ -52,7 +54,6 @@ useEffect(() => {
 		return firstName;
 	}
 
-
 const value = {
 	firstName,
 	lastName,
@@ -60,10 +61,9 @@ const value = {
 	age,
 	height,
 	currentWeight,
-	goalWeight
+	goalWeight,
+	id
 }
-
-
 
 	return (
 		<DatabaseContext.Provider value ={value}>

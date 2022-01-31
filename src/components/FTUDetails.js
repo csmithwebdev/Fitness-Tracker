@@ -31,7 +31,7 @@ const FTUDetails = (props) => {
 			currentWeight, 
 			goalWeight
 		}
-		detailsRef.push(userDetails);
+		detailsRef.push(userDetails); //Push the data to our database
 		navigate('/');	
 	}
 
