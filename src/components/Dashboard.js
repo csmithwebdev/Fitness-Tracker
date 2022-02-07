@@ -11,6 +11,7 @@ import CalendarArea from './CalendarArea';
 import Goals from './Goals';
 import UpdateProfile from './UpdateProfile';
 import UpdateGoals from './UpdateGoals';
+import firebase from "../firebase"
 
 
 const Dashboard = (props) => {
@@ -55,6 +56,26 @@ const Dashboard = (props) => {
 		}
 	}
 
+
+
+/*
+
+	const dbRef = firebase.database().ref('UserDetails');
+      dbRef.child(currentUser.uid).get().then((snapshot) => {
+      	if (snapshot.exists()) {
+      		console.log(snapshot.val().firstName);
+      		const firstName = snapshot.val().firstName;
+      		const lastName = snapshot.val().lastName;
+      	} else {
+      		console.log("No data available");
+      	}
+      }).catch((error) => {
+      	console.error(error);
+      })
+*/
+      
+
+
 	return (
 			<Container fluid>
 				<Row>
@@ -79,8 +100,8 @@ const Dashboard = (props) => {
 								</Row>
 							</Dropdown.Toggle>
 								<Dropdown.Menu>
-									<Dropdown.Item className="profileLink"><Link to ="/update-goals">User Settings</Link></Dropdown.Item>
-								    <Dropdown.Item className="profileLink"><Link to ="/update-profile">Security</Link></Dropdown.Item>
+									<Link className="profileLink" to ="/update-goals">User Settings</Link>
+								    <Link className="profileLink" to ="/update-profile">Security</Link>
 								    <Dropdown.Item className="profileLink" onClick={handleLogout}>Logout</Dropdown.Item>
 								 </Dropdown.Menu>
 						</Dropdown>
@@ -89,9 +110,7 @@ const Dashboard = (props) => {
 						{getCalendar()}
 						{getGoals()}
 						{getUpdateProfile()}
-						{getUpdateGoals()}
-
-						
+						{getUpdateGoals()}					
 						
 					</Col>
 				</Row>

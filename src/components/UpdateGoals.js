@@ -11,7 +11,7 @@ export function UpdateGoals({ userDetails }) {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [message, setMessage] = useState('');
-	const {firstName, lastName, gender, age, height, currentWeight, goalWeight, id} = useDatabase();
+	const {firstName, lastName, gender, age, height, currentWeight, goalWeight, id, userId} = useDatabase();
 	const [newCurrentWeight, setNewCurrentWeight] = useState();
 	const [newGoalWeight, setNewGoalWeight] = useState();
 	const [newFirstName, setNewFirstName] = useState();

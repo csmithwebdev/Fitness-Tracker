@@ -11,11 +11,10 @@ export default function Signup() {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const passwordConfirmRef = useRef();
-	const {signup} = useAuth();
+	const {signup, writeUserData, currentUser} = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-	const {isNewUser} = useAuth();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -27,7 +26,7 @@ export default function Signup() {
 			setError('');
 			setLoading(true);
 			await signup(emailRef.current.value, passwordRef.current.value);
-				navigate('/basic-info');			
+				navigate('/basic-info');
 		} catch {
 			setError('Failed to create an account')
 		}
@@ -38,7 +37,6 @@ export default function Signup() {
 	return(
 		<>
 		<Container className="main" fluid>
-		<img className="main-logo" src="https://www.csmithwebdev.com/wp-content/uploads/2022/01/logo.svg"/>
 			<Container className="d-flex align-items-center justify-content-center" style={{minHeight: '100vh'}}>
 				<div className="w-100" style={{maxWidth: '400px'}}>
 					<Card>

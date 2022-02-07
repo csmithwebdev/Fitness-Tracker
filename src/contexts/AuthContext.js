@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { auth } from "../firebase"
+import firebase from "../firebase"
 
 const AuthContext = React.createContext()
 
@@ -10,6 +11,7 @@ export function useAuth() {
 export function AuthProvider ({children}) {
 	const [currentUser, setCurrentUser] = useState()
 	const [loading, setLoading] = useState(true)
+  const [userDetailsList, setUserDetailsList] = useState();
 
 function signup(email, password) {
     return auth.createUserWithEmailAndPassword(email, password)
@@ -35,8 +37,10 @@ function signup(email, password) {
   	return currentUser.updatePassword(password);
   }
 
-  function isNewUser() {
-    return auth.additionalUserInfo.isNewUser();
+  function writeUserData(user) {
+    firebase.database().ref('UserDetails/' + user.uid).set(user).catch(error => {
+      console.log(error.message);
+    });
   }
 
 	useEffect(() => {
@@ -44,6 +48,7 @@ function signup(email, password) {
       	setCurrentUser(user);
       	setLoading(false);
     })
+
 
     return unsubscribe
   }, [])
@@ -56,7 +61,7 @@ function signup(email, password) {
     	resetPassword,
     	updateEmail,
     	updatePassword,
-      isNewUser
+      writeUserData
 	}
 
 

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useRef, useState} from 'react';
 import '../styles.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
@@ -7,58 +7,34 @@ import firebase from '../firebase';
 
 const FTUDetails = (props) => {
 
-	const {currentUser} = useAuth();
+	const {currentUser, writeUserData} = useAuth();
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
-	const [firstName, setFirstName] = useState('');
-	const [lastName, setLastName] = useState('');
-	const [gender, setGender] = useState('');
-	const [age, setAge] = useState('');
-	const [height, setHeight] = useState('');
-	const [currentWeight, setCurrentWeight] = useState('');
-	const [goalWeight, setGoalWeight] = useState('');
+	const firstName = useRef();
+	const lastName = useRef();
+	const gender = useRef();
+	const age = useRef();
+	const height = useRef();
+	const currentWeight = useRef();
+	const goalWeight = useRef();
 	const navigate = useNavigate();
 
-	async function handleSubmit(e) {
+	function handleSubmit(e) {
 		e.preventDefault();
-		const detailsRef = firebase.database().ref('UserDetails');
-		const userDetails = {
-			firstName,
-			lastName, 
-			gender, 
-			age, 
-			height, 
-			currentWeight, 
-			goalWeight
+		var user = {
+			firstName: firstName.current.value,
+			lastName: lastName.current.value,
+			gender: gender.current.value,
+			age: age.current.value,
+			height: height.current.value,
+			currentWeight: currentWeight.current.value,
+			goalWeight: goalWeight.current.value,
+			uid: currentUser.uid,
+			email: currentUser.email
 		}
-		detailsRef.push(userDetails); //Push the data to our database
+		writeUserData(user);
 		navigate('/');	
 	}
-
-	function getFirstName(e) {
-		setFirstName(e.target.value);
-	}
-	function getLastName(e) {
-		setLastName(e.target.value);
-	}
-	function getGender(e) {
-		setGender(e.target.value);
-	}
-	function getAge(e) {
-		setAge(e.target.value);
-	}
-	function getHeight(e) {
-		setHeight(e.target.value);
-	}
-	function getCurrentWeight(e) {
-		setCurrentWeight(e.target.value);
-	}
-	function getGoalWeight(e) {
-		setGoalWeight(e.target.value);
-	}
-
-
-
 
 	return (
 		<>
@@ -71,37 +47,37 @@ const FTUDetails = (props) => {
 							<Form onSubmit={handleSubmit}>
 								<Form.Group>
 									<Form.Label>First Name</Form.Label>
-									<Form.Control onChange={getFirstName} type="text" required />
+									<Form.Control ref={firstName} type="text" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Last Name</Form.Label>
-									<Form.Control onChange={getLastName} type="text" required />
+									<Form.Control ref={lastName} type="text" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Gender</Form.Label>
-									<Form.Control onChange={getGender} type="text" required />
+									<Form.Control ref={gender} type="text" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Age</Form.Label>
-									<Form.Control onChange={getAge} type="number" required />
+									<Form.Control ref={age} type="number" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Height</Form.Label>
-									<Form.Control onChange={getHeight} type="number" required />
+									<Form.Control ref={height} type="number" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Current Weight</Form.Label>
-									<Form.Control onChange={getCurrentWeight} type="number" required />
+									<Form.Control ref={currentWeight} type="number" required />
 								</Form.Group>
 
 								<Form.Group>
 									<Form.Label>Goal Weight</Form.Label>
-									<Form.Control onChange={getGoalWeight} type="number" required />
+									<Form.Control ref={goalWeight} type="number" required />
 								</Form.Group>
 
 								<Button disabled={loading} style={{marginTop: '10px'}} type="submit" className="w-100">Let's Go!</Button>

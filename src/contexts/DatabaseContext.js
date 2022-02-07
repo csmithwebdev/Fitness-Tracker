@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import firebase from '../firebase';
+import { useAuth } from "../contexts/AuthContext";
 
 export const DatabaseContext = React.createContext()
 
@@ -9,7 +10,6 @@ export function useDatabase() {
 
 export function DatabaseProvider({children}) {
 
-	const [userDetailsList, setUserDetailsList] = useState();
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [gender, setGender] = useState('');
@@ -17,42 +17,29 @@ export function DatabaseProvider({children}) {
 	const [height, setHeight] = useState();
 	const [currentWeight, setCurrentWeight] = useState();
 	const [goalWeight, setGoalWeight] = useState();
-	const [id, setId] = useState();
+	const { currentUser, logout } = useAuth();
 
 //Get data from database
 useEffect(() => {
 		const detailsRef = firebase.database().ref('UserDetails');
-		detailsRef.on("value", (snapshot)=> {
-			const userDetails = snapshot.val();
-			const userDetailsList = [];
+		detailsRef.child(currentUser.uid).get().then((snapshot) => {
 
-			for (let id in userDetails) {
-				userDetailsList.push({id, ...userDetails[id]});
+			if(snapshot.exists()) {
+				setFirstName(snapshot.val().firstName);
+				setLastName(snapshot.val().lastName);
+				setGender(snapshot.val().gender);
+				setAge(snapshot.val().age);
+				setHeight(snapshot.val().height);
+				setCurrentWeight(snapshot.val().currentWeight);
+				setGoalWeight(snapshot.val().goalWeight);
+			} else {
+				console.log('No data available');
 			}
-			setUserDetailsList(userDetailsList);
+			
+
 		});
 	}, []);
 
-//Create new array of data and set each datapoint as it's own state variable
-	useEffect(() => {
-		if (userDetailsList) {
-		const ud = userDetailsList.map((details) => {
-		setFirstName(details.firstName);
-		setLastName(details.lastName);
-		setGender(details.gender);
-		setAge(details.age);
-		setHeight(details.height);
-		setCurrentWeight(details.currentWeight);
-		setGoalWeight(details.goalWeight);
-		setId(details.id);
-		});
-		return ud;
-		}
-	})
-
-	function userFirstName(firstName) {
-		return firstName;
-	}
 
 const value = {
 	firstName,
@@ -62,7 +49,6 @@ const value = {
 	height,
 	currentWeight,
 	goalWeight,
-	id
 }
 
 	return (

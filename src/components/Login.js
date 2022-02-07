@@ -2,7 +2,9 @@ import React, {useRef, useState} from 'react';
 import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../contexts/AuthContext";
+import { useDatabase } from "../contexts/DatabaseContext";
 import { Link, useNavigate } from 'react-router-dom';
+import firebase from '../firebase';
 
 
 
@@ -10,10 +12,12 @@ export default function Login() {
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const {login} = useAuth();
+	const profile = useRef();
+	const {login, currentUser, getFirstName, writeUserData} = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const {firstName} = useDatabase();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -22,7 +26,10 @@ export default function Login() {
 			setError('');
 			setLoading(true);
 			await login(emailRef.current.value, passwordRef.current.value);
-			navigate('/');
+			if(currentUser !== null) {
+				navigate('/');
+			}
+			
 		} catch {
 			setError('Failed to login')
 		}
