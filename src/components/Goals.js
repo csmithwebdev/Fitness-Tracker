@@ -1,29 +1,10 @@
 import '../styles.css';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import UserDetails from './UserDetails';
-import Sidebar from './Sidebar';
-import {Button, Card, Alert, Container, Row, Col, Dropdown} from 'react-bootstrap';
-import { useAuth } from "../contexts/AuthContext";
-import { Link, useNavigate } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import firebase from '../firebase';
+import {Container, Row} from 'react-bootstrap';
 
 
 const Goals = (props) => {
-	const [error, setError] = useState("");
-	const { currentUser, logout } = useAuth();
-	const navigate = useNavigate();
-
-
-	async function handleLogout () {
-		setError('');
-		try {
-			await logout();
-			navigate('/login');
-		} catch {
-			setError('Failed to logout.')
-		}
-	}
 
 
 	return (

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import firebase from '../firebase';
 import { useAuth } from "../contexts/AuthContext";
+import { auth } from "../firebase"
 
 export const DatabaseContext = React.createContext()
 
@@ -17,13 +18,13 @@ export function DatabaseProvider({children}) {
 	const [height, setHeight] = useState();
 	const [currentWeight, setCurrentWeight] = useState();
 	const [goalWeight, setGoalWeight] = useState();
-	const { currentUser, logout } = useAuth();
+	const { currentUser } = useAuth();
 
 //Get data from database
 useEffect(() => {
 		const detailsRef = firebase.database().ref('UserDetails');
-		detailsRef.child(currentUser.uid).get().then((snapshot) => {
-
+		if(currentUser !== null) {
+			detailsRef.child(currentUser.uid).get().then((snapshot) => {
 			if(snapshot.exists()) {
 				setFirstName(snapshot.val().firstName);
 				setLastName(snapshot.val().lastName);
@@ -35,14 +36,14 @@ useEffect(() => {
 			} else {
 				console.log('No data available');
 			}
-			
-
 		});
-	}, []);
+		}		
+	}, );
 
 
 const value = {
 	firstName,
+	setFirstName,
 	lastName,
 	gender,
 	age,

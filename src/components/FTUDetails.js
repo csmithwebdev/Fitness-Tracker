@@ -1,15 +1,14 @@
-import React, { useRef, useState} from 'react';
+import React, { useRef, useEffect} from 'react';
 import '../styles.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
+import { Form, Button, Card, Container} from 'react-bootstrap';
 import { useAuth } from "../contexts/AuthContext";
-import firebase from '../firebase';
+import {useDatabase} from "../contexts/DatabaseContext";
+import { auth } from "../firebase"
 
 const FTUDetails = (props) => {
 
 	const {currentUser, writeUserData} = useAuth();
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState('');
 	const firstName = useRef();
 	const lastName = useRef();
 	const gender = useRef();
@@ -18,6 +17,7 @@ const FTUDetails = (props) => {
 	const currentWeight = useRef();
 	const goalWeight = useRef();
 	const navigate = useNavigate();
+	const { setFirstName } = useDatabase();
 
 	function handleSubmit(e) {
 		e.preventDefault();
@@ -33,8 +33,10 @@ const FTUDetails = (props) => {
 			email: currentUser.email
 		}
 		writeUserData(user);
+		setFirstName(null)
 		navigate('/');	
 	}
+
 
 	return (
 		<>
@@ -43,7 +45,6 @@ const FTUDetails = (props) => {
 					<Card>
 						<Card.Body>
 							<h2 className="text-center mb-4">Welcome!<br /> Let's get some basic info.</h2>
-							{error && <Alert variant="danger">{error}</Alert>}
 							<Form onSubmit={handleSubmit}>
 								<Form.Group>
 									<Form.Label>First Name</Form.Label>
@@ -80,7 +81,7 @@ const FTUDetails = (props) => {
 									<Form.Control ref={goalWeight} type="number" required />
 								</Form.Group>
 
-								<Button disabled={loading} style={{marginTop: '10px'}} type="submit" className="w-100">Let's Go!</Button>
+								<Button style={{marginTop: '10px'}} type="submit" className="w-100">Let's Go!</Button>
 							</Form>
 						</Card.Body>
 					</Card>

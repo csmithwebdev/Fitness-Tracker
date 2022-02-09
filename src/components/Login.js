@@ -2,34 +2,28 @@ import React, {useRef, useState} from 'react';
 import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../contexts/AuthContext";
-import { useDatabase } from "../contexts/DatabaseContext";
 import { Link, useNavigate } from 'react-router-dom';
-import firebase from '../firebase';
-
-
+import {useDatabase} from "../contexts/DatabaseContext";
 
 export default function Login() {
 
 	const emailRef = useRef();
 	const passwordRef = useRef();
-	const profile = useRef();
-	const {login, currentUser, getFirstName, writeUserData} = useAuth();
+	const {login } = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
-	const {firstName} = useDatabase();
+	const { setFirstName } = useDatabase();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-
-		try {
+			try {
 			setError('');
 			setLoading(true);
 			await login(emailRef.current.value, passwordRef.current.value);
-			if(currentUser !== null) {
+			//setFirstName(null); //Causes re-render of first time user data from databasecontext.
 				navigate('/');
-			}
-			
+				
 		} catch {
 			setError('Failed to login')
 		}

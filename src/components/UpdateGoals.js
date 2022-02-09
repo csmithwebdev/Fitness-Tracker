@@ -1,17 +1,14 @@
-import React, {useRef, useState} from 'react';
-import { Form, Button, Card, Container, Alert, Row} from 'react-bootstrap';
+import React, {useState} from 'react';
+import { Form, Button, Container, Alert, Row} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useAuth } from "../contexts/AuthContext";
 import {useDatabase} from "../contexts/DatabaseContext";
-import { Link, useNavigate } from 'react-router-dom';
 import firebase from '../firebase';
 
 export function UpdateGoals({ userDetails }) {
 
-	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [message, setMessage] = useState('');
-	const {firstName, lastName, gender, age, height, currentWeight, goalWeight, id, userId} = useDatabase();
+	const {firstName, lastName, gender, age, height, currentWeight, goalWeight, id} = useDatabase();
 	const [newCurrentWeight, setNewCurrentWeight] = useState();
 	const [newGoalWeight, setNewGoalWeight] = useState();
 	const [newFirstName, setNewFirstName] = useState();
@@ -77,7 +74,8 @@ export function UpdateGoals({ userDetails }) {
 				<Container className="calendarPanel" fluid>
 					<Row className="float-left dashboardPanel">
 						<Form onSubmit={handleSubmit}>
-						<Row className="innerRow"> 
+						<Row className="innerRow">
+						{error}
 						{message && <Alert variant="success">{message}</Alert>}
 								<h5><u>Your Goals</u></h5>
 							</Row>
@@ -119,7 +117,7 @@ export function UpdateGoals({ userDetails }) {
 									<Form.Label>Height</Form.Label>
 									<Form.Control onChange={getNewHeight} type="Number" placeholder={height} />
 								</Form.Group>
-								<Button disabled={loading} style={{marginTop: '10px'}} type="submit" className="w-100">Update</Button>
+								<Button style={{marginTop: '10px'}} type="submit" className="w-100">Update</Button>
 						</Form>
 					</Row>
 				</Container>

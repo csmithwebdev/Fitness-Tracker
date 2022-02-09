@@ -1,20 +1,12 @@
 import './styles.css';
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Signup from './components/Signup';
-import Calendar from 'react-calendar';
-import WorkoutLog from './components/WorkoutLog';
-import UserDetails from './components/UserDetails';
 import Dashboard from './components/Dashboard';
-import { Container, Row, Col } from 'react-bootstrap';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
 import ForgotPassword from './components/ForgotPassword';
-import UpdateProfile from './components/UpdateProfile';
-import Goals from './components/Goals';
-import CalendarArea from './components/CalendarArea';
-import Sidebar from './components/Sidebar';
 import FTUDetails from './components/FTUDetails';
 import { DatabaseProvider } from './contexts/DatabaseContext';
 
@@ -36,6 +28,9 @@ TODO:
 4. Database to store user details
 5. Database to store workout goals
 6. Database to store workouts
+
+git fetch --all
+git reset --hard origin/main
 
 */
 

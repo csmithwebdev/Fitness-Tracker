@@ -56,7 +56,7 @@ function getWorkout() {
 			<div>
 				<h3>{getWorkout()}</h3>
 				<p>{props.date.toLocaleDateString("en-US", options)}</p>
-				<button className="fixed-bottom" onClick={completedWorkout} className="ui positive basic button complete">Mark as complete</button>
+				<button onClick={completedWorkout} className="ui positive basic button complete">Mark as complete</button>
 			</div>
 		);
 }

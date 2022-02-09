@@ -3,7 +3,7 @@ import { Form, Button, Card, Container, Alert} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from "../contexts/AuthContext";
 import { Link, useNavigate } from 'react-router-dom';
-
+import {useDatabase} from "../contexts/DatabaseContext";
 
 
 export default function Signup() {
@@ -11,10 +11,11 @@ export default function Signup() {
 	const emailRef = useRef();
 	const passwordRef = useRef();
 	const passwordConfirmRef = useRef();
-	const {signup, writeUserData, currentUser} = useAuth();
+	const {signup} = useAuth();
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
+	const {firstName } = useDatabase();
 
 	async function handleSubmit(e) {
 		e.preventDefault();
@@ -33,6 +34,12 @@ export default function Signup() {
 
 		setLoading(false);
 	} 
+
+		if(firstName) {
+		console.log(firstName)
+	} else {
+		console.log('no user exists here')
+	}
 
 	return(
 		<>

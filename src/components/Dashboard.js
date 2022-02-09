@@ -1,9 +1,7 @@
 import '../styles.css';
-import React, {useState, useEffect} from 'react';
-import Calendar from 'react-calendar';
-import WorkoutLog from './WorkoutLog';
+import React from 'react';
 import Sidebar from './Sidebar';
-import {Button, Card, Alert, Container, Row, Col, Dropdown} from 'react-bootstrap';
+import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import { useAuth } from "../contexts/AuthContext";
 import {useDatabase} from "../contexts/DatabaseContext";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -11,24 +9,20 @@ import CalendarArea from './CalendarArea';
 import Goals from './Goals';
 import UpdateProfile from './UpdateProfile';
 import UpdateGoals from './UpdateGoals';
-import firebase from "../firebase"
 
 
 const Dashboard = (props) => {
-	const [error, setError] = useState("");
-	const { currentUser, logout } = useAuth();
+	const { logout } = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
-	const {firstName, lastName} = useDatabase();
+	const { firstName, lastName} = useDatabase();
 
 
 	async function handleLogout () {
-		setError('');
 		try {
 			await logout();
 			navigate('/login');
 		} catch {
-			setError('Failed to logout.')
 		}
 	}
 
@@ -54,26 +48,7 @@ const Dashboard = (props) => {
 		if(location.pathname === '/update-goals') {
 			return <UpdateGoals />;
 		}
-	}
-
-
-
-/*
-
-	const dbRef = firebase.database().ref('UserDetails');
-      dbRef.child(currentUser.uid).get().then((snapshot) => {
-      	if (snapshot.exists()) {
-      		console.log(snapshot.val().firstName);
-      		const firstName = snapshot.val().firstName;
-      		const lastName = snapshot.val().lastName;
-      	} else {
-      		console.log("No data available");
-      	}
-      }).catch((error) => {
-      	console.error(error);
-      })
-*/
-      
+	}     
 
 
 	return (
@@ -83,16 +58,13 @@ const Dashboard = (props) => {
 					<Col>
 						<Row className="topnav">
 						<Col lg={10}>
-							<div>
-								<h1></h1>
-							</div>
 						</Col>
 						<Col>
 						<Dropdown>
 							<Dropdown.Toggle variant="none" id="dropdown-basic">
 								<Row className="profileDrop">
 									<Col lg={3} className="d-flex justify-content-center">
-									<img className="profileImage" src="https://www.csmithwebdev.com/wp-content/uploads/2022/01/headshot2.jpg"/>
+									<img className="profileImage" alt="user profile" src="https://www.csmithwebdev.com/wp-content/uploads/2022/01/headshot2.jpg"/>
 									</Col>
 									<Col className="d-flex align-items-center">
 									<p>{firstName} {lastName}</p>
